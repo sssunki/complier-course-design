@@ -6,7 +6,7 @@ struct ASTNode * mknode(int num,int kind,int pos,...){
     int i=0;
     T->kind=kind;
     T->pos=pos;
-    va_list pArgs = NULL;
+    va_list pArgs;
     va_start(pArgs, pos);
     for(i=0;i<num;i++)
         T->ptr[i]= va_arg(pArgs, struct ASTNode *);

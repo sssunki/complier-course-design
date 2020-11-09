@@ -1,33 +1,33 @@
+%error-verbose 
+%locations 
 %{
-#include "stdio.h"
-#include "math.h"
-#include "string.h"
-#include "def.h"
-extern int yylineno;
-extern char *yytext;
-extern FILE *yyin;
-void yyerror(const char* fmt, ...);
+#include "stdio.h" 
+#include "math.h" 
+#include "string.h" 
+#include "def.h" 
+extern int yylineno; 
+extern char *yytext; 
+extern FILE *yyin; 
+void yyerror(const char* fmt, ...); 
 void display(struct ASTNode *,int);
 %}
 
 %union {
-	int    type_int;
-	float  type_float;
-	char   type_id[32];
-	struct ASTNode *ptr;
+int type_int;
+float type_float; 
+char type_id[32]; 
+struct ASTNode *ptr;
 };
 
-%type  <ptr> program ExtDefList ExtDef  Specifier ExtDecList FuncDec CompSt VarList VarDec ParamDec Stmt StmList DefList Def DecList Dec Exp Args 
+%type <ptr> program ExtDefList ExtDef Specifier ExtDecList FuncDec CompSt VarList VarDec ParamDec Stmt StmList DefList Def DecList Dec Exp Args 
 
-%token <type_int> INT              
-%token <type_id> ID  RELOP TYPE    
-%token <type_float> FLOAT          
-
-%token DPLUS LP RP LC RC SEMI COMMA      
-%token PLUS MINUS STAR DIV ASSIGNOP AND OR NOT IF ELSE WHILE RETURN FOR SWITCH CASE COLON DEFAULT
+%token <type_int> INT 
+%token <type_id> ID RELOP TYPE 
+%token <type_float> FLOAT 
+%token DPLUS LP RP LC RC SEMI COMMA 
+%token PLUS MINUS STAR DIV ASSIGNOP AND OR NOT IF ELSE WHILE RETURN FOR SWITCH CASECOLON DEFAULT
 %token EXT_DEF_LIST EXT_VAR_DEF FUNC_DEF FUNC_DEC EXT_DEC_LIST PARAM_LIST PARAM_DEC VAR_DEF DEC_LIST DEF_LIST COMP_STM STM_LIST EXP_STMT IF_THEN IF_THEN_ELSE
 %token FUNC_CALL ARGS FUNCTION PARAM ARG CALL LABEL GOTO JLT JLE JGT JGE EQ NEQ
-
 
 %left ASSIGNOP
 %left OR
@@ -41,8 +41,7 @@ void display(struct ASTNode *,int);
 %nonassoc ELSE
 
 %%
-
-program: ExtDefList    { display($1,0); semantic_Analysis0($1);}     //显示语法树,语义分析
+program: ExtDefList    { display($1,0); }     //显示语法树,语义分析
          ; 
 ExtDefList: {$$=NULL;}
           | ExtDef ExtDefList {$$=mknode(2,EXT_DEF_LIST,yylineno,$1,$2);}   //每一个EXTDEFLIST的结点，其第1棵子树对应一个外部变量声明或函数

@@ -65,40 +65,39 @@
      RETURN = 281,
      FOR = 282,
      SWITCH = 283,
-     CASE = 284,
-     COLON = 285,
-     DEFAULT = 286,
-     EXT_DEF_LIST = 287,
-     EXT_VAR_DEF = 288,
-     FUNC_DEF = 289,
-     FUNC_DEC = 290,
-     EXT_DEC_LIST = 291,
-     PARAM_LIST = 292,
-     PARAM_DEC = 293,
-     VAR_DEF = 294,
-     DEC_LIST = 295,
-     DEF_LIST = 296,
-     COMP_STM = 297,
-     STM_LIST = 298,
-     EXP_STMT = 299,
-     IF_THEN = 300,
-     IF_THEN_ELSE = 301,
-     FUNC_CALL = 302,
-     ARGS = 303,
-     FUNCTION = 304,
-     PARAM = 305,
-     ARG = 306,
-     CALL = 307,
-     LABEL = 308,
-     GOTO = 309,
-     JLT = 310,
-     JLE = 311,
-     JGT = 312,
-     JGE = 313,
-     EQ = 314,
-     NEQ = 315,
-     UMINUS = 316,
-     LOWER_THEN_ELSE = 317
+     CASECOLON = 284,
+     DEFAULT = 285,
+     EXT_DEF_LIST = 286,
+     EXT_VAR_DEF = 287,
+     FUNC_DEF = 288,
+     FUNC_DEC = 289,
+     EXT_DEC_LIST = 290,
+     PARAM_LIST = 291,
+     PARAM_DEC = 292,
+     VAR_DEF = 293,
+     DEC_LIST = 294,
+     DEF_LIST = 295,
+     COMP_STM = 296,
+     STM_LIST = 297,
+     EXP_STMT = 298,
+     IF_THEN = 299,
+     IF_THEN_ELSE = 300,
+     FUNC_CALL = 301,
+     ARGS = 302,
+     FUNCTION = 303,
+     PARAM = 304,
+     ARG = 305,
+     CALL = 306,
+     LABEL = 307,
+     GOTO = 308,
+     JLT = 309,
+     JLE = 310,
+     JGT = 311,
+     JGE = 312,
+     EQ = 313,
+     NEQ = 314,
+     UMINUS = 315,
+     LOWER_THEN_ELSE = 316
    };
 #endif
 /* Tokens.  */
@@ -128,55 +127,54 @@
 #define RETURN 281
 #define FOR 282
 #define SWITCH 283
-#define CASE 284
-#define COLON 285
-#define DEFAULT 286
-#define EXT_DEF_LIST 287
-#define EXT_VAR_DEF 288
-#define FUNC_DEF 289
-#define FUNC_DEC 290
-#define EXT_DEC_LIST 291
-#define PARAM_LIST 292
-#define PARAM_DEC 293
-#define VAR_DEF 294
-#define DEC_LIST 295
-#define DEF_LIST 296
-#define COMP_STM 297
-#define STM_LIST 298
-#define EXP_STMT 299
-#define IF_THEN 300
-#define IF_THEN_ELSE 301
-#define FUNC_CALL 302
-#define ARGS 303
-#define FUNCTION 304
-#define PARAM 305
-#define ARG 306
-#define CALL 307
-#define LABEL 308
-#define GOTO 309
-#define JLT 310
-#define JLE 311
-#define JGT 312
-#define JGE 313
-#define EQ 314
-#define NEQ 315
-#define UMINUS 316
-#define LOWER_THEN_ELSE 317
+#define CASECOLON 284
+#define DEFAULT 285
+#define EXT_DEF_LIST 286
+#define EXT_VAR_DEF 287
+#define FUNC_DEF 288
+#define FUNC_DEC 289
+#define EXT_DEC_LIST 290
+#define PARAM_LIST 291
+#define PARAM_DEC 292
+#define VAR_DEF 293
+#define DEC_LIST 294
+#define DEF_LIST 295
+#define COMP_STM 296
+#define STM_LIST 297
+#define EXP_STMT 298
+#define IF_THEN 299
+#define IF_THEN_ELSE 300
+#define FUNC_CALL 301
+#define ARGS 302
+#define FUNCTION 303
+#define PARAM 304
+#define ARG 305
+#define CALL 306
+#define LABEL 307
+#define GOTO 308
+#define JLT 309
+#define JLE 310
+#define JGT 311
+#define JGE 312
+#define EQ 313
+#define NEQ 314
+#define UMINUS 315
+#define LOWER_THEN_ELSE 316
 
 
 
 
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 typedef union YYSTYPE
-#line 13 "parser.y"
+#line 15 "parser.y"
 {
-	int    type_int;
-	float  type_float;
-	char   type_id[32];
-	struct ASTNode *ptr;
+int type_int;
+float type_float; 
+char type_id[32]; 
+struct ASTNode *ptr;
 }
 /* Line 1529 of yacc.c.  */
-#line 180 "parser.tab.h"
+#line 178 "parser.tab.h"
 	YYSTYPE;
 # define yystype YYSTYPE /* obsolescent; will be withdrawn */
 # define YYSTYPE_IS_DECLARED 1
@@ -185,3 +183,17 @@ typedef union YYSTYPE
 
 extern YYSTYPE yylval;
 
+#if ! defined YYLTYPE && ! defined YYLTYPE_IS_DECLARED
+typedef struct YYLTYPE
+{
+  int first_line;
+  int first_column;
+  int last_line;
+  int last_column;
+} YYLTYPE;
+# define yyltype YYLTYPE /* obsolescent; will be withdrawn */
+# define YYLTYPE_IS_DECLARED 1
+# define YYLTYPE_IS_TRIVIAL 1
+#endif
+
+extern YYLTYPE yylloc;
