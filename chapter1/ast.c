@@ -17,38 +17,38 @@ struct ASTNode * mknode(int num,int kind,int pos,...){
 
 
 void display(struct ASTNode *T,int indent)
-{//对抽象语法树的先根遍历
+{
   int i=1;
   struct ASTNode *T0;
   if (T)
 	{
 	switch (T->kind) {
-	case EXT_DEF_LIST:  display(T->ptr[0],indent);    //显示该外部定义（外部变量和函数）列表中的第一个
-                        display(T->ptr[1],indent);    //显示该外部定义列表中的其它外部定义
+	case EXT_DEF_LIST:  display(T->ptr[0],indent);    
+                        display(T->ptr[1],indent);    
                         break;
 	case EXT_VAR_DEF:   printf("%*c var define：(%d)\n",indent,' ',T->pos);
-                        display(T->ptr[0],indent+3);        //显示外部变量类型
+                        display(T->ptr[0],indent+3);        
                         printf("%*c var name：\n",indent+3,' ');
-                        display(T->ptr[1],indent+6);        //显示变量列表
+                        display(T->ptr[1],indent+6);        
                         break;
 	case TYPE:          printf("%*c type： %s\n",indent,' ',T->type_id);
                         break;
-    case EXT_DEC_LIST:  display(T->ptr[0],indent);     //依次显示外部变量名，
-                        display(T->ptr[1],indent);     //后续还有相同的，仅显示语法树此处理代码可以和类似代码合并
+    case EXT_DEC_LIST:  display(T->ptr[0],indent);     
+                        display(T->ptr[1],indent);     
                         break;
 	case FUNC_DEF:      printf("%*c func define：(%d)\n",indent,' ',T->pos);
-                        display(T->ptr[0],indent+3);      //显示函数返回类型
-                        display(T->ptr[1],indent+3);      //显示函数名和参数
-                        display(T->ptr[2],indent+3);      //显示函数体
+                        display(T->ptr[0],indent+3);      
+                        display(T->ptr[1],indent+3);      
+                        display(T->ptr[2],indent+3);     
                         break;
 	case FUNC_DEC:      printf("%*c func name：%s\n",indent,' ',T->type_id);
                         if (T->ptr[0]) {
                                 printf("%*c params：\n",indent,' ');
-                                display(T->ptr[0],indent+3);  //显示函数参数列表
+                                display(T->ptr[0],indent+3);  
                                 }
                         else printf("%*c no param func \n",indent+3,' ');
                         break;
-	case PARAM_LIST:    display(T->ptr[0],indent);     //依次显示全部参数类型和名称，
+	case PARAM_LIST:    display(T->ptr[0],indent);    
                         display(T->ptr[1],indent);
                         break;
 	case PARAM_DEC:     printf("%*c type：%s, param name：%s\n",indent,' ',T->ptr[0]->type==INT?"int":"float",T->ptr[1]->type_id);
@@ -61,39 +61,39 @@ void display(struct ASTNode *T,int indent)
                         break;
 	case COMP_STM:      printf("%*c comp statement ：(%d)\n",indent,' ',T->pos);
                         printf("%*c var define in comp statement：\n",indent+3,' ');
-                        display(T->ptr[0],indent+6);      //显示定义部分
+                        display(T->ptr[0],indent+6);      
                         printf("%*c statement in comp statement：\n",indent+3,' ');
-                        display(T->ptr[1],indent+6);      //显示语句部分
+                        display(T->ptr[1],indent+6);      
                         break;
-	case STM_LIST:      display(T->ptr[0],indent);      //显示第一条语句
-                        display(T->ptr[1],indent);        //显示剩下语句
+	case STM_LIST:      display(T->ptr[0],indent);      
+                        display(T->ptr[1],indent);        
                         break;
 	case WHILE:         printf("%*c while statemnt：(%d)\n",indent,' ',T->pos);
                         printf("%*c while condition：\n",indent+3,' ');
-                        display(T->ptr[0],indent+6);      //显示循环条件
+                        display(T->ptr[0],indent+6);      
                         printf("%*c while body：(%d)\n",indent+3,' ',T->pos);
-                        display(T->ptr[1],indent+6);      //显示循环体
+                        display(T->ptr[1],indent+6);     
                         break;
 	case IF_THEN:       printf("%*c if no else statement：(%d)\n",indent,' ',T->pos);
                         printf("%*c condition：\n",indent+3,' ');
-                        display(T->ptr[0],indent+6);      //显示条件
+                        display(T->ptr[0],indent+6);     
                         printf("%*c if statement：(%d)\n",indent+3,' ',T->pos);
-                        display(T->ptr[1],indent+6);      //显示if子句
+                        display(T->ptr[1],indent+6);      
                         break;
 	case IF_THEN_ELSE:  printf("%*c if than else statement：(%d)\n",indent,' ',T->pos);
                         printf("%*c condition：\n",indent+3,' ');
-                        display(T->ptr[0],indent+6);      //显示条件
+                        display(T->ptr[0],indent+6);     
                         printf("%*c if statement ：(%d)\n",indent+3,' ',T->pos);
-                        display(T->ptr[1],indent+6);      //显示if子句
+                        display(T->ptr[1],indent+6);      
                         printf("%*c else statement：(%d)\n",indent+3,' ',T->pos);
-                        display(T->ptr[2],indent+6);      //显示else子句
+                        display(T->ptr[2],indent+6);      
                         break;
-    case DEF_LIST:      display(T->ptr[0],indent);    //显示该局部变量定义列表中的第一个
-                        display(T->ptr[1],indent);    //显示其它局部变量定义
+    case DEF_LIST:      display(T->ptr[0],indent);    
+                        display(T->ptr[1],indent);    
                         break;
     case VAR_DEF:       printf("%*c var define：(%d)\n",indent,' ',T->pos);
-                        display(T->ptr[0],indent+3);   //显示变量类型
-                        display(T->ptr[1],indent+3);   //显示该定义的全部变量名
+                        display(T->ptr[0],indent+3);   
+                        display(T->ptr[1],indent+3);   
                         break;
     case DEC_LIST:      printf("%*c var name：\n",indent,' ');
                         T0=T;
@@ -103,7 +103,7 @@ void display(struct ASTNode *T,int indent)
                             else if (T0->ptr[0]->kind==ASSIGNOP)
                                 {
                                 printf("%*c %s ASSIGNOP\n ",indent+6,' ',T0->ptr[0]->ptr[0]->type_id);
-                                display(T0->ptr[0]->ptr[1],indent+strlen(T0->ptr[0]->ptr[0]->type_id)+7);        //显示初始化表达式
+                                display(T0->ptr[0]->ptr[1],indent+strlen(T0->ptr[0]->ptr[0]->type_id)+7);        
                                 }
                             T0=T0->ptr[1];
                             }
@@ -135,14 +135,12 @@ void display(struct ASTNode *T,int indent)
                     display(T->ptr[0],indent+3);
                     break;
 	case ARGS:      i=1;
-                    while (T) {  //ARGS表示实际参数表达式序列结点，其第一棵子树为其一个实际参数表达式，第二棵子树为剩下的
+                    while (T) {  
                         struct ASTNode *T0=T->ptr[0];
                         printf("%*c第%d个实际参数表达式：\n",indent,' ',i++);
                         display(T0,indent+3);
                         T=T->ptr[1];
                         }
-//                    printf("%*c第%d个实际参数表达式：\n",indent,' ',i);
-  //                  display(T,indent+3);
                     printf("\n");
                     break;
          }

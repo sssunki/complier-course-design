@@ -8,11 +8,7 @@ int main()
     if ( i == 10 )
     {
         i = 100;
-    } else
-    {
-        i = 1000;
     }
-    
     while ( i != 10)
     {
         i = i + 1;

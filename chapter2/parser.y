@@ -42,7 +42,7 @@ struct ASTNode *ptr;
 %nonassoc ELSE
 
 %%
-program: ExtDefList    { printf("SHOW LEX AND BISON RESULT \n \n"); display($1,0);semantic_Analysis0($1); }       
+program: ExtDefList    { semantic_Analysis0($1); }       
          ; 
 ExtDefList: {$$=NULL;}
           | ExtDef ExtDefList {$$=mknode(2,EXT_DEF_LIST,yylineno,$1,$2);}   
