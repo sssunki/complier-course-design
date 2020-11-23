@@ -151,7 +151,7 @@ void semantic_error(int line,char *msg1,char *msg2){
 }
 void prn_symbol(){ //显示符号表
     int i=0;
-    printf("%6s %6s %6s  %6s %4s %6s\n","变量名","别 名","层 号","类  型","标记","偏移量");
+    printf("\n SHOW SYMBOL TABLE \n \n %6s %6s %6s  %6s %4s %6s\n","name  ","alias  ","level ","type  ","flag","offset");
     for(i=0;i<symbolTable.index;i++)
         printf("%6s %6s %6d  %6s %4c %6d\n",symbolTable.symbols[i].name,\
                 symbolTable.symbols[i].alias,symbolTable.symbols[i].level,\
@@ -568,7 +568,6 @@ void semantic_Analysis(struct ASTNode *T)
                 }
              #if (DEBUG)
                 prn_symbol();       //c在退出一个复合语句前显示的符号表
-			  system("pause");
              #endif
              LEV--;    //出复合语句，层号减1
              symbolTable.index=symbol_scope_TX.TX[--symbol_scope_TX.top]; //删除该作用域中的符号
@@ -742,5 +741,4 @@ void semantic_Analysis0(struct ASTNode *T) {
     symbol_scope_TX.top=1;
     T->offset=0;              //外部变量在数据区的偏移量
     semantic_Analysis(T);
-    prnIR(T->code);
  } 

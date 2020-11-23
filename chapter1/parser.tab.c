@@ -1603,7 +1603,7 @@ yyreduce:
     {
         case 2:
 #line 45 "parser.y"
-    { display((yyvsp[(1) - (1)].ptr),0); ;}
+    { printf("SHOW LEX AND BISON RESULT \n \n"); display((yyvsp[(1) - (1)].ptr),0); ;}
     break;
 
   case 3:
